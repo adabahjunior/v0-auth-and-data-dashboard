@@ -6,11 +6,16 @@ export async function middleware(request: NextRequest) {
 
   // Protect /dashboard route - redirect to home if not authenticated
   if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    const { data: { session } } = await (
-      await import('@/lib/supabase/server')
-    ).createClient().auth.getSession()
+    try {
+      const { createClient } = await import('@/lib/supabase/server')
+      const supabase = await createClient()
+      const { data: { session } } = await supabase.auth.getSession()
 
-    if (!session) {
+      if (!session) {
+        return NextResponse.redirect(new URL('/', request.url))
+      }
+    } catch (error) {
+      // If there's an error checking auth, redirect to home for safety
       return NextResponse.redirect(new URL('/', request.url))
     }
   }

@@ -74,11 +74,11 @@ export function AuthForm() {
   return (
     <div className="w-full max-w-md">
       <Card className="border-2 border-primary/20 shadow-2xl bg-card/95 backdrop-blur">
-        <CardHeader className="space-y-3">
-          <CardTitle className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+        <CardHeader className="space-y-2">
+          <CardTitle className="text-xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
             {isSignUp ? 'Join BossuData Gh' : 'Welcome Back'}
           </CardTitle>
-          <CardDescription className="text-base">
+          <CardDescription className="text-sm">
             {isSignUp
               ? 'Start buying and reselling data bundles today'
               : 'Access your data bundles and result checkers'}
@@ -233,7 +233,7 @@ export function AuthForm() {
 
             <Button 
               type="submit" 
-              className="w-full font-semibold py-6 text-base bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 transition-all" 
+              className="w-full font-semibold py-5 text-sm bg-gradient-to-r from-primary to-purple-600 hover:opacity-90 transition-all" 
               disabled={isLoading}
             >
               {isLoading ? (
