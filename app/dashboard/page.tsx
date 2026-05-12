@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { DashboardSidebar } from '@/components/dashboard-sidebar'
 import { DashboardHeader } from '@/components/dashboard-header'
 import { ProductGrid } from '@/components/product-grid'
 import { CheckoutModal } from '@/components/checkout-modal'
@@ -105,30 +106,58 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-background">
-      <DashboardHeader user={user} />
+      <DashboardSidebar />
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-foreground mb-2">Data Bundles & Result Checkers</h2>
-          <p className="text-muted-foreground">
-            Browse and purchase premium data bundles and exam result checkers to resell
-          </p>
-        </div>
+      {/* Main Content */}
+      <div className="lg:ml-64">
+        <DashboardHeader user={user} />
 
-        {products.length === 0 ? (
-          <Card className="p-12 text-center">
-            <p className="text-muted-foreground">No bundles available yet.</p>
-          </Card>
-        ) : (
-          <ProductGrid
-            products={products}
-            onSelectProduct={(product) => {
-              setSelectedProduct(product)
-              setShowCheckout(true)
-            }}
-          />
-        )}
-      </main>
+        <main className="max-w-6xl mx-auto px-4 md:px-6 py-8">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold text-foreground mb-2">Overview</h2>
+            <p className="text-muted-foreground">
+              Welcome back! Browse and purchase premium data bundles and exam result checkers to resell
+            </p>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <Card className="p-6 border-l-4 border-l-primary">
+              <div className="text-sm text-muted-foreground mb-1">Total Purchases</div>
+              <div className="text-3xl font-bold text-foreground">0</div>
+              <p className="text-xs text-muted-foreground mt-2">This month</p>
+            </Card>
+            <Card className="p-6 border-l-4 border-l-accent">
+              <div className="text-sm text-muted-foreground mb-1">Wallet Balance</div>
+              <div className="text-3xl font-bold text-foreground">GHC 0.00</div>
+              <p className="text-xs text-muted-foreground mt-2">Available</p>
+            </Card>
+            <Card className="p-6 border-l-4 border-l-secondary">
+              <div className="text-sm text-muted-foreground mb-1">Active Bundles</div>
+              <div className="text-3xl font-bold text-foreground">{products.length}</div>
+              <p className="text-xs text-muted-foreground mt-2">Available to purchase</p>
+            </Card>
+          </div>
+
+          {/* Products Section */}
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-foreground mb-4">Available Bundles</h3>
+            {products.length === 0 ? (
+              <Card className="p-12 text-center">
+                <p className="text-muted-foreground">No bundles available yet.</p>
+              </Card>
+            ) : (
+              <ProductGrid
+                products={products}
+                onSelectProduct={(product) => {
+                  setSelectedProduct(product)
+                  setShowCheckout(true)
+                }}
+              />
+            )}
+          </div>
+        </main>
+      </div>
 
       {selectedProduct && showCheckout && (
         <CheckoutModal
