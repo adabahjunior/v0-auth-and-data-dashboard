@@ -52,9 +52,9 @@ export function CheckoutModal({
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Confirm Purchase</DialogTitle>
+          <DialogTitle>Complete Your Order</DialogTitle>
           <DialogDescription>
-            Review your purchase details below
+            Review your BossuData Gh bundle purchase details below
           </DialogDescription>
         </DialogHeader>
 
@@ -84,7 +84,7 @@ export function CheckoutModal({
           <Card className="bg-blue-50 border-blue-200">
             <CardContent className="pt-4">
               <p className="text-sm text-blue-900">
-                <strong>Note:</strong> This is a test payment. No actual charge will be made.
+                <strong>Note:</strong> This test purchase will be saved to your BossuData Gh account. You&apos;ll be able to download and resell the bundle immediately after confirmation.
               </p>
             </CardContent>
           </Card>

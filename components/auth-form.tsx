@@ -57,8 +57,8 @@ export function AuthForm() {
         <CardTitle>{isSignUp ? 'Create Account' : 'Sign In'}</CardTitle>
         <CardDescription>
           {isSignUp
-            ? 'Create an account to start buying data'
-            : 'Sign in to your account'}
+            ? 'Create an account to buy and resell data bundles on BossuData Gh'
+            : 'Sign in to BossuData Gh to access your data bundles and result checkers'}
         </CardDescription>
       </CardHeader>
       <CardContent>
