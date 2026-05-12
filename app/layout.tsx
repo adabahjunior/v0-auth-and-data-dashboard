@@ -7,8 +7,8 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'DataHub - Data Marketplace',
-  description: 'Discover and purchase high-quality datasets',
+  title: 'BossuData Gh - Buy & Resell Data Bundles',
+  description: 'Buy, resell, and access premium data bundles and exam result checkers',
   generator: 'v0.app',
   icons: {
     icon: [

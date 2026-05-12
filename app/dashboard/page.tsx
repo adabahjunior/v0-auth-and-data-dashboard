@@ -109,15 +109,15 @@ export default function Dashboard() {
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-foreground mb-2">Available Datasets</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-2">Data Bundles & Result Checkers</h2>
           <p className="text-muted-foreground">
-            Browse and purchase high-quality datasets for your business
+            Browse and purchase premium data bundles and exam result checkers to resell
           </p>
         </div>
 
         {products.length === 0 ? (
           <Card className="p-12 text-center">
-            <p className="text-muted-foreground">No datasets available yet.</p>
+            <p className="text-muted-foreground">No bundles available yet.</p>
           </Card>
         ) : (
           <ProductGrid
