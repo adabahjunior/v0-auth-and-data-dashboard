@@ -53,9 +53,9 @@ export function DashboardSidebar() {
   ]
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full overflow-hidden">
       {/* Logo */}
-      <div className="p-6 border-b border-sidebar-border">
+      <div className="p-6 border-b border-sidebar-border flex-shrink-0">
         <Link href="/dashboard" className="flex items-center gap-2">
           <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold">
             BD
@@ -65,7 +65,7 @@ export function DashboardSidebar() {
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex-1 px-4 py-6 space-y-2">
+      <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-2 scrollbar-thin scrollbar-thumb-sidebar-accent scrollbar-track-sidebar-border">
         {sidebarItems.slice(0, 4).map((item) => {
           const Icon = item.icon
           return (
@@ -138,7 +138,7 @@ export function DashboardSidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="p-4 border-t border-sidebar-border">
+      <div className="p-4 border-t border-sidebar-border flex-shrink-0">
         <Button
           onClick={handleLogout}
           variant="outline"

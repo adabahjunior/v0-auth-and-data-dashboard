@@ -61,7 +61,19 @@ export function AuthForm() {
           password,
         })
         if (signInError) throw signInError
-        router.push('/dashboard')
+        
+        // Check if user is admin
+        const { data: profile } = await supabase
+          .from('profiles')
+          .select('is_admin')
+          .eq('id', (await supabase.auth.getUser()).data.user?.id)
+          .single()
+        
+        if (profile?.is_admin) {
+          router.push('/admin')
+        } else {
+          router.push('/dashboard')
+        }
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
@@ -254,7 +266,7 @@ export function AuthForm() {
           }}
           className="w-full text-sm font-medium text-teal-700 hover:text-teal-800 transition-colors py-2 rounded-lg"
         >
-          {isSignUp ? '← Back to login' : "Don&apos;t have an account? Sign Up"}
+          {isSignUp ? '← Back to login' : "Don't have an account? Sign Up"}
         </button>
       </form>
     </div>
