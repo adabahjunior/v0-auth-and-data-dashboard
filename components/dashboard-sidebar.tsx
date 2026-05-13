@@ -6,18 +6,19 @@ import { usePathname, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import {
-  LayoutDashboard,
-  Wallet,
-  History,
-  ShoppingCart,
-  Store,
-  Code,
-  AlertCircle,
-  LogOut,
-  Menu,
-  X,
-  ChevronDown,
-} from 'lucide-react'
+    LayoutDashboard,
+    Wallet,
+    History,
+    ShoppingCart,
+    Store,
+    Code,
+    AlertCircle,
+    LogOut,
+    Menu,
+    X,
+    ChevronDown,
+    Award,
+  } from 'lucide-react'
 
 export function DashboardSidebar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -45,6 +46,7 @@ export function DashboardSidebar() {
     { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
     { label: 'Wallet', href: '/dashboard/wallet', icon: Wallet },
     { label: 'Transactions', href: '/dashboard/transactions', icon: History },
+    { label: 'Buy Checker', href: '/dashboard/buy-checker', icon: Award },
     { label: 'My Shop', href: '/dashboard/shop', icon: Store },
     { label: 'Developer API', href: '/dashboard/api', icon: Code },
     { label: 'Report An Issue', href: '/dashboard/report', icon: AlertCircle },
@@ -64,7 +66,7 @@ export function DashboardSidebar() {
 
       {/* Main Navigation */}
       <nav className="flex-1 px-4 py-6 space-y-2">
-        {sidebarItems.slice(0, 3).map((item) => {
+        {sidebarItems.slice(0, 4).map((item) => {
           const Icon = item.icon
           return (
             <Link
@@ -78,7 +80,7 @@ export function DashboardSidebar() {
               }`}
             >
               <Icon size={20} />
-              <span className="hidden lg:inline">{item.label}</span>
+              <span>{item.label}</span>
             </Link>
           )
         })}
@@ -89,7 +91,7 @@ export function DashboardSidebar() {
           className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-sidebar-foreground hover:bg-sidebar-accent/50 transition-all"
         >
           <ShoppingCart size={20} />
-          <span className="hidden lg:inline">Buy Data</span>
+          <span>Buy Data</span>
           <ChevronDown size={16} className={`ml-auto transition-transform ${isBuyDataOpen ? 'rotate-180' : ''}`} />
         </button>
 
@@ -114,7 +116,7 @@ export function DashboardSidebar() {
 
         {/* Other Pages */}
         <div className="mt-6 pt-6 border-t border-sidebar-border">
-          {sidebarItems.slice(3).map((item) => {
+          {sidebarItems.slice(4).map((item) => {
             const Icon = item.icon
             return (
               <Link
@@ -128,7 +130,7 @@ export function DashboardSidebar() {
                 }`}
               >
                 <Icon size={20} />
-                <span className="hidden lg:inline">{item.label}</span>
+                <span>{item.label}</span>
               </Link>
             )
           })}
