@@ -9,6 +9,7 @@ interface Product {
   description: string
   price: number
   category: string
+  data_size_gb?: number
 }
 
 interface ProductGridProps {
@@ -30,12 +31,19 @@ export function ProductGrid({ products, onSelectProduct }: ProductGridProps) {
             </div>
           </CardHeader>
           <CardContent className="flex-1 flex flex-col justify-between">
-            <p className="text-muted-foreground text-sm mb-4">
+            <p className="text-muted-foreground text-sm mb-3">
               {product.description}
             </p>
+            {product.data_size_gb && (
+              <div className="mb-3 p-2 bg-primary/10 rounded-lg">
+                <p className="text-sm font-medium text-primary">
+                  {product.data_size_gb} GB Bundle
+                </p>
+              </div>
+            )}
             <div className="flex items-center justify-between">
               <div className="text-2xl font-bold text-foreground">
-                ${product.price.toFixed(2)}
+                GHC {product.price.toFixed(2)}
               </div>
               <Button onClick={() => onSelectProduct(product)}>
                 Buy Now

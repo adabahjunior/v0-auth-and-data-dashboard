@@ -17,6 +17,7 @@ interface Product {
   description: string
   price: number
   category: string
+  data_size_gb?: number
 }
 
 interface User {
@@ -72,10 +73,16 @@ export function CheckoutModal({
                 <p className="text-sm text-muted-foreground">Description</p>
                 <p className="text-foreground text-sm">{product.description}</p>
               </div>
+              {product.data_size_gb && (
+                <div>
+                  <p className="text-sm text-muted-foreground">Bundle Size</p>
+                  <p className="text-foreground font-medium">{product.data_size_gb} GB</p>
+                </div>
+              )}
               <div className="pt-4 border-t">
                 <p className="text-sm text-muted-foreground mb-1">Total Price</p>
                 <p className="text-3xl font-bold text-foreground">
-                  ${product.price.toFixed(2)}
+                  GHC {product.price.toFixed(2)}
                 </p>
               </div>
             </CardContent>

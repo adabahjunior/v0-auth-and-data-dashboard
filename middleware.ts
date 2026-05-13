@@ -20,6 +20,33 @@ export async function middleware(request: NextRequest) {
     }
   }
 
+  // Protect /admin route - only admins allowed
+  if (request.nextUrl.pathname.startsWith('/admin')) {
+    try {
+      const { createClient } = await import('@/lib/supabase/server')
+      const supabase = await createClient()
+      const { data: { session } } = await supabase.auth.getSession()
+
+      if (!session) {
+        return NextResponse.redirect(new URL('/', request.url))
+      }
+
+      // Check if user is admin
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('is_admin')
+        .eq('id', session.user.id)
+        .single()
+
+      if (!profile?.is_admin) {
+        return NextResponse.redirect(new URL('/dashboard', request.url))
+      }
+    } catch (error) {
+      // If there's an error checking admin status, redirect to dashboard
+      return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+  }
+
   return response
 }
 
